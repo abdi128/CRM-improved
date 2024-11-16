@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Record
+{% endblock %}
+
+
+{% block content %}
+<div class="container"><br>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="col-md-8 offset-md-2">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <h1 class="text-center pt-3 fw-bold">Customer Record:</h1><br>
+    <div class="col-md-6 offset-md-3">  
+        <div class="card shadow">
+            <div class="card-header">
+                <strong>{{ customer_record.first_name }} {{ customer_record.last_name }}</strong>
+            </div>
+            <div class="card-body">
+              <p><strong>Email: &nbsp;</strong>{{ customer_record.email }}</p>
+              <p><strong>Phone: &nbsp;</strong>{{ customer_record.phone }}</p>
+              <p><strong>Address: &nbsp;</strong>{{ customer_record.address }}</p>
+              <p><strong>City: &nbsp;</strong>{{ customer_record.city }}</p>
+              <p><strong>State: &nbsp;</strong>{{ customer_record.state }}</p>
+              <p><strong>Zip Code: &nbsp;</strong>{{ customer_record.zipcode }}</p>
+              <p><strong>Created At: &nbsp;</strong>{{ customer_record.created_at }}</p>
+            </div>
+          </div> <br>
+          <div class="d-flex justify-content-between">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+            <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'update_record' customer_record.id %}" class="btn btn-primary">Update</a>
+          </div>
+    </div><br><br>
+{% endblock %}

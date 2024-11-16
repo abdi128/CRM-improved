@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Update Record
+{% endblock %}
+
+
+{% block content %}
+<div class="container"><br>
+    {% if form.errors %}
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="col-md-8 offset-md-2">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        Your Form Has Errors:
+                        {{ field.errors }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <h1 class="text-center pt-3 fw-bold">Update Record:</h1>
+    <div class="col-md-6 offset-md-3">
+        <form method="POST" class="border p-5 mt-3 rounded bg-body-tertiary shadow">
+            {% csrf_token %}
+            <!--
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required><br>
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required><br>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email" required><br>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required><br>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Address" required><br>
+                <input type="text" class="form-control" id="city" name="city" placeholder="City" required><br>
+                <input type="text" class="form-control" id="state" name="state" placeholder="State" required><br>
+                <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="Zip Code" required><br>-->
+                {{ form.as_p }}
+
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+                    <button type="submit" class="btn btn-primary d-flex justify-content-center">Update</button>
+                </div>
+        </form>
+    </div> 
+    </div><br><br>
+{% endblock %}
